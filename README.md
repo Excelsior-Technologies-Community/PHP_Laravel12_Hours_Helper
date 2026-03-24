@@ -497,6 +497,12 @@ HoursHelper::create('16:00', '21:00', 30);  // Evening: every 30 minutes
 | After confirming | Success message shown on page |
 
 ---
+<img width="1901" height="914" alt="Screenshot 2026-03-24 174438" src="https://github.com/user-attachments/assets/4acbadf5-cd73-48ee-a810-e34eba58ecc3" />
+<img width="1912" height="909" alt="Screenshot 2026-03-24 174459" src="https://github.com/user-attachments/assets/8b316f3b-0b3d-4972-a188-abc988ea9e83" />
+<img width="1897" height="901" alt="Screenshot 2026-03-24 174551" src="https://github.com/user-attachments/assets/08c8a372-644b-46a4-bda6-7839101162e6" />
+
+
+
 
 ## Project Folder Structure
 
