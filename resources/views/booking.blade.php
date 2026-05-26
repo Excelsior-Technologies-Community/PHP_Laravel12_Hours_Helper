@@ -134,7 +134,7 @@
             width: 70px;
             height: 70px;
             border-radius: 20px;
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -248,7 +248,7 @@
 
         .appointment-card {
             background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
             padding: 22px 24px;
             margin-bottom: 20px;
@@ -264,7 +264,7 @@
         .appointment-card:hover {
             transform: translateY(-4px);
             border-color: #0ea5e9;
-            box-shadow: 0 10px 30px rgba(14,165,233,0.18);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.18);
         }
 
         .appointment-left {
@@ -315,7 +315,7 @@
         }
 
         .time-pill {
-            background: rgba(34,197,94,0.18);
+            background: rgba(34, 197, 94, 0.18);
             color: #4ade80 !important;
 
             padding: 8px 14px;
@@ -404,6 +404,21 @@
             font-weight: 700;
         }
 
+        .form-select {
+            background: #0f172a;
+            color: white;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            min-width: 140px;
+        }
+
+        .form-select:focus {
+            background: #0f172a;
+            color: white;
+            box-shadow: none;
+            border-color: #38bdf8;
+        }
+
         @media(max-width:768px) {
 
             .appointment-card {
@@ -462,76 +477,79 @@
 
                 <div class="row g-4 mb-4">
 
-                    <div class="col-md-4">
-
+                    <div class="col-md-3">
                         <div class="stats-card stats-blue">
-
-                            <div class="stats-icon">
-                                🩺
-                            </div>
+                            <div class="stats-icon">📋</div>
 
                             <small class="stats-label">
-                                Experience
+                                Total
                             </small>
 
                             <div class="stats-value">
-                                15+
+                                {{ $totalAppointments }}
                             </div>
 
                             <div class="stats-desc">
-                                Years Experience
+                                Appointments
                             </div>
-
                         </div>
-
                     </div>
 
-                    <div class="col-md-4">
 
+                    <div class="col-md-3">
                         <div class="stats-card stats-green">
-
-                            <div class="stats-icon">
-                                👨‍⚕️
-                            </div>
+                            <div class="stats-icon">📅</div>
 
                             <small class="stats-label">
-                                Patients
+                                Today
                             </small>
 
                             <div class="stats-value">
-                                2000+
+                                {{ $todayAppointments }}
                             </div>
 
                             <div class="stats-desc">
-                                Happy Patients
+                                Today Bookings
                             </div>
-
                         </div>
-
                     </div>
 
-                    <div class="col-md-4">
 
+                    <div class="col-md-3">
                         <div class="stats-card stats-orange">
-
-                            <div class="stats-icon">
-                                ⭐
-                            </div>
+                            <div class="stats-icon">⌛</div>
 
                             <small class="stats-label">
-                                Rating
+                                Pending
                             </small>
 
                             <div class="stats-value">
-                                4.9
+                                {{ $pendingAppointments }}
                             </div>
 
                             <div class="stats-desc">
-                                Excellent Reviews
+                                Waiting
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="stats-card stats-green">
+                            <div class="stats-icon">✅</div>
+
+                            <small class="stats-label">
+                                Confirmed
+                            </small>
+
+                            <div class="stats-value">
+                                {{ $confirmedAppointments }}
                             </div>
 
+                            <div class="stats-desc">
+                                Approved
+                            </div>
                         </div>
-
                     </div>
 
                 </div>
@@ -572,21 +590,21 @@
 
                         @foreach($morningSlots as $slot)
 
-                            @php
-                                $isBooked = in_array($slot, $bookedSlots);
-                            @endphp
+                        @php
+                        $isBooked = in_array($slot, $bookedSlots);
+                        @endphp
 
-                            <button type="button"
-                                class="time-btn {{ $isBooked ? 'booked' : '' }}"
-                                @if($isBooked)
-                                    disabled
-                                @else
-                                    onclick="openBookingModal('{{ $slot }}', this)"
-                                @endif>
+                        <button type="button"
+                            class="time-btn {{ $isBooked ? 'booked' : '' }}"
+                            @if($isBooked)
+                            disabled
+                            @else
+                            onclick="openBookingModal('{{ $slot }}', this)"
+                            @endif>
 
-                                {{ $slot }}
+                            {{ $slot }}
 
-                            </button>
+                        </button>
 
                         @endforeach
 
@@ -602,21 +620,21 @@
 
                         @foreach($eveningSlots as $slot)
 
-                            @php
-                                $isBooked = in_array($slot, $bookedSlots);
-                            @endphp
+                        @php
+                        $isBooked = in_array($slot, $bookedSlots);
+                        @endphp
 
-                            <button type="button"
-                                class="time-btn {{ $isBooked ? 'booked' : '' }}"
-                                @if($isBooked)
-                                    disabled
-                                @else
-                                    onclick="openBookingModal('{{ $slot }}', this)"
-                                @endif>
+                        <button type="button"
+                            class="time-btn {{ $isBooked ? 'booked' : '' }}"
+                            @if($isBooked)
+                            disabled
+                            @else
+                            onclick="openBookingModal('{{ $slot }}', this)"
+                            @endif>
 
-                                {{ $slot }}
+                            {{ $slot }}
 
-                            </button>
+                        </button>
 
                         @endforeach
 
@@ -685,96 +703,137 @@
 
                     @forelse($appointments as $appointment)
 
-                        <div class="appointment-card">
+                    <div class="appointment-card">
 
-                            <!-- LEFT -->
+                        <!-- LEFT -->
 
-                            <div class="appointment-left">
+                        <div class="appointment-left">
 
-                                <div class="avatar-circle">
-
-                                    {{ strtoupper(substr($appointment->patient_name,0,1)) }}
-
-                                </div>
-
-                                <div>
-
-                                    <h5 class="patient-name">
-
-                                        {{ $appointment->patient_name }}
-
-                                    </h5>
-
-                                    <p class="patient-email mb-0">
-
-                                        {{ $appointment->email }}
-
-                                    </p>
-
-                                </div>
-
+                            <div class="avatar-circle">
+                                {{ strtoupper(substr($appointment->patient_name,0,1)) }}
                             </div>
-
-                            <!-- CENTER -->
-
-                            <div class="appointment-center">
-
-                                <div class="info-item">
-
-                                    <small>Date</small>
-
-                                    <strong>
-
-                                        {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
-
-                                    </strong>
-
-                                </div>
-
-                                <div class="info-item">
-
-                                    <small>Time</small>
-
-                                    <strong class="time-pill">
-
-                                        {{ date('h:i A', strtotime($appointment->appointment_time)) }}
-
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-                            <!-- RIGHT -->
 
                             <div>
 
-                                <form action="{{ route('appointments.destroy', $appointment->id) }}"
-                                    method="POST">
+                                <h5 class="patient-name">
+                                    {{ $appointment->patient_name }}
+                                </h5>
 
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button class="delete-btn"
-                                        onclick="return confirm('Delete appointment?')">
-
-                                        Delete
-
-                                    </button>
-
-                                </form>
+                                <p class="patient-email mb-0">
+                                    {{ $appointment->email }}
+                                </p>
 
                             </div>
 
                         </div>
 
-                    @empty
+                        <!-- CENTER -->
 
-                        <div class="text-center py-5 text-secondary">
+                        <div class="appointment-center">
 
-                            No appointments found
+                            <div class="info-item">
+
+                                <small>Date</small>
+
+                                <strong>
+                                    {{ \Carbon\Carbon::parse($appointment->appointment_date)->format('d M Y') }}
+                                </strong>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <small>Time</small>
+
+                                <strong class="time-pill">
+                                    {{ date('h:i A', strtotime($appointment->appointment_time)) }}
+                                </strong>
+
+                            </div>
+
+                            <div class="info-item">
+
+                                <small>Status</small>
+
+                                @if($appointment->status=="Pending")
+                                <span class="badge bg-warning">
+                                    Pending
+                                </span>
+
+                                @elseif($appointment->status=="Confirmed")
+                                <span class="badge bg-success">
+                                    Confirmed
+                                </span>
+
+                                @else
+                                <span class="badge bg-primary">
+                                    Completed
+                                </span>
+                                @endif
+
+                            </div>
 
                         </div>
+
+                        <!-- RIGHT -->
+
+                        <div class="d-flex gap-2 align-items-center">
+
+                            <form action="{{ route('appointments.status',$appointment->id) }}"
+                                method="POST">
+
+                                @csrf
+                                @method('PATCH')
+
+                                <select name="status"
+                                    class="form-select"
+                                    onchange="this.form.submit()">
+
+                                    <option value="Pending"
+                                        {{ $appointment->status=='Pending' ? 'selected':'' }}>
+                                        Pending
+                                    </option>
+
+                                    <option value="Confirmed"
+                                        {{ $appointment->status=='Confirmed' ? 'selected':'' }}>
+                                        Confirmed
+                                    </option>
+
+                                    <option value="Completed"
+                                        {{ $appointment->status=='Completed' ? 'selected':'' }}>
+                                        Completed
+                                    </option>
+
+                                </select>
+
+                            </form>
+
+                            <form action="{{ route('appointments.destroy',$appointment->id) }}"
+                                method="POST">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="delete-btn"
+                                    onclick="return confirm('Delete appointment?')">
+
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    @empty
+
+                    <div class="text-center py-5 text-secondary">
+
+                        No appointments found
+
+                    </div>
 
                     @endforelse
 
@@ -862,7 +921,6 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
-
         flatpickr("#date_picker", {
             minDate: "today",
             dateFormat: "Y-m-d",
@@ -883,7 +941,6 @@
             ).show();
 
         }
-
     </script>
 
 </body>

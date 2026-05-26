@@ -15,3 +15,6 @@ Route::post('/book-appointment', [AppointmentController::class, 'store'])
 
 Route::delete('/appointment/{id}', [AppointmentController::class, 'destroy'])
     ->name('appointments.destroy');
+
+Route::patch('/appointment/status/{id}',[AppointmentController::class,'updateStatus'])
+->name('appointments.status');    
